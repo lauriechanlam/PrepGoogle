@@ -3,8 +3,7 @@
 
 #include "datastructure.h"
 
-class Heap: public DataStructure
-{
+class Heap: public TableInterface {
 public:
     Heap();
     bool insert(int value); /* Average case O(n log n) */

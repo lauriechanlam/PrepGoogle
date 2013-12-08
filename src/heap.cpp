@@ -1,7 +1,7 @@
 #include <algorithm>
 #include "heap.h"
 
-Heap::Heap():DataStructure() {
+Heap::Heap():TableInterface() {
 }
 
 

@@ -2,7 +2,7 @@
 #include <vector>
 #include "quicksort_table.h"
 
-QuickSortTable::QuickSortTable(): DataStructure() {
+QuickSortTable::QuickSortTable(): TableInterface() {
 }
 
 
@@ -34,8 +34,6 @@ void QuickSortTable::sort() {
 		}
 		/* Put the pivot at the right place */
 		std::swap(table_[range_min], table_[i-1]);
-
-		write();
 
 		todo.push_back(std::pair<int, int>(range_min, i-1));
 		todo.push_back(std::pair<int, int>(i, range_max));

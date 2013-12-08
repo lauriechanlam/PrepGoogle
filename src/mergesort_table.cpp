@@ -3,7 +3,7 @@
 #include "mergesort_table.h"
 
 
-MergeSortTable::MergeSortTable(): DataStructure() {
+MergeSortTable::MergeSortTable(): TableInterface() {
 }
 
 void MergeSortTable::sort() {

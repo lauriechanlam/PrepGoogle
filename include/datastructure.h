@@ -3,13 +3,20 @@
 
 const int MAX_NUM_ELEMENTS = 100;
 
-class DataStructure
-{
+class DataInterface {
 public:
-    DataStructure();
+	DataInterface();
+	virtual void write() const = 0;
+    virtual bool insert(int value) = 0;
+    virtual void sort() = 0;
+    virtual bool suppress(int value) = 0;
+};
+
+class TableInterface: public DataInterface {
+public:
+    TableInterface();
 	virtual void write() const;
     virtual bool insert(int value);
-    virtual void sort() = 0;
     virtual bool suppress(int value);
     virtual int find(int value);
 protected:

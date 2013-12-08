@@ -4,20 +4,8 @@
 #include "heap.h"
 #include "quicksort_table.h"
 #include "mergesort_table.h"
+#include "binary_tree.h"
 
-int main_heap(int argc, char** argv) {
-	Heap heap;
-
-    for(int index = 1; index < argc; ++index) {
-        int value = atoi(argv[index]);
-        heap.insert(value);
-        heap.write();
-    }
-    heap.sort();
-    heap.write();
-
-    return 0;
-}
 
 template<class SortTable>
 int main_sort(int argc, char** argv) {
@@ -34,8 +22,28 @@ int main_sort(int argc, char** argv) {
     return 0;
 }
 
+int main_tree(int argc, char** argv) {
+	BinaryTree *tree = NULL;
+	for(int index = 1; index < argc; ++index) {
+        int value = atoi(argv[index]);
+		if (tree != NULL)
+			tree->insert(value);
+		else
+			tree = new BinaryTree(value);
+    }
+	tree->write();
+
+	return 0;
+}
+
+
 int main(int argc, char** argv) {
-    return main_sort<MergeSortTable>(argc, argv);
+ //   main_sort<Heap>(argc, argv);
+	//main_sort<QuickSortTable>(argc, argv);
+	//main_sort<MergeSortTable>(argc, argv);
+	main_tree(argc, argv);
+
+	return 0;
 }
 
 

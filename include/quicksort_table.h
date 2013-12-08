@@ -3,7 +3,7 @@
 
 #include "datastructure.h"
 
-class QuickSortTable: public DataStructure
+class QuickSortTable: public TableInterface
 {
 public:
 	QuickSortTable();

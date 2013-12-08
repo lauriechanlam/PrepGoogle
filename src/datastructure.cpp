@@ -1,25 +1,28 @@
 #include <stdio.h>
 #include "datastructure.h"
 
-DataStructure::DataStructure():
+DataInterface::DataInterface() {
+}
+
+TableInterface::TableInterface(): DataInterface(),
     num_elements_(0) {
 }
 
-void DataStructure::write() const {
+void TableInterface::write() const {
     for (int index = 0; index < num_elements_; ++index)
         printf("%d ", table_[index]);
 
     printf("\n");
 }
 
-bool DataStructure::insert(int value) {
+bool TableInterface::insert(int value) {
 	if (num_elements_ == MAX_NUM_ELEMENTS)
 		return false;
 	table_[num_elements_] = value;
 	++num_elements_;
 }
 
-bool DataStructure::suppress(int value) {
+bool TableInterface::suppress(int value) {
 	int index_value = find(value);
 
 	if (index_value == -1)
@@ -34,7 +37,7 @@ bool DataStructure::suppress(int value) {
 	return true;
 }
 
-int DataStructure::find(int value) {
+int TableInterface::find(int value) {
 	if (num_elements_ == 0)
 		return -1;
 

@@ -3,7 +3,7 @@
 
 #include "datastructure.h"
 
-class MergeSortTable : public DataStructure
+class MergeSortTable : public TableInterface
 {
 public:
 	MergeSortTable();
