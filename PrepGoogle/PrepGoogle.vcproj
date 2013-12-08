@@ -175,6 +175,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\mergesort_table.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\quicksort_table.cpp"
 				>
 			</File>
@@ -190,6 +194,10 @@
 			</File>
 			<File
 				RelativePath="..\include\heap.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\mergesort_table.h"
 				>
 			</File>
 			<File

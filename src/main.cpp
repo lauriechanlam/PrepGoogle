@@ -3,6 +3,7 @@
 
 #include "heap.h"
 #include "quicksort_table.h"
+#include "mergesort_table.h"
 
 int main_heap(int argc, char** argv) {
 	Heap heap;
@@ -18,8 +19,9 @@ int main_heap(int argc, char** argv) {
     return 0;
 }
 
-int main_quicksort(int argc, char** argv) {
-	QuickSortTable table;
+template<class SortTable>
+int main_sort(int argc, char** argv) {
+	SortTable table;
 
     for(int index = 1; index < argc; ++index) {
         int value = atoi(argv[index]);
@@ -33,7 +35,7 @@ int main_quicksort(int argc, char** argv) {
 }
 
 int main(int argc, char** argv) {
-    return main_quicksort(argc, argv);
+    return main_sort<MergeSortTable>(argc, argv);
 }
 
 
