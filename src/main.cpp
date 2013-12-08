@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "heap.h"
 
-int main(int argc, char** argv)
-{
-    Heap heap;
+#include "heap.h"
+#include "quicksort_table.h"
+
+int main_heap(int argc, char** argv) {
+	Heap heap;
 
     for(int index = 1; index < argc; ++index) {
         int value = atoi(argv[index]);
@@ -15,6 +16,24 @@ int main(int argc, char** argv)
     heap.write();
 
     return 0;
+}
+
+int main_quicksort(int argc, char** argv) {
+	QuickSortTable table;
+
+    for(int index = 1; index < argc; ++index) {
+        int value = atoi(argv[index]);
+        table.insert(value);
+        table.write();
+    }
+    table.sort();
+    table.write();
+
+    return 0;
+}
+
+int main(int argc, char** argv) {
+    return main_quicksort(argc, argv);
 }
 
 

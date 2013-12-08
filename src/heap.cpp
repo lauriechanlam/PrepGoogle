@@ -1,16 +1,7 @@
-#include "heap.h"
-#include <cstdio>
 #include <algorithm>
+#include "heap.h"
 
 Heap::Heap():DataStructure() {
-}
-
-
-void Heap::write() const {
-    for (int index = 0; index < num_elements_; ++index)
-        printf("%d ", table_[index]);
-
-    printf("\n");
 }
 
 
