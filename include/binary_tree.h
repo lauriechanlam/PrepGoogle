@@ -9,12 +9,13 @@ public:
 	BinaryTree(int value);
 	virtual void write() const;
     virtual bool insert(int value);
-	virtual void sort(){};
-	virtual bool suppress(int value){return false;};
-	virtual int find(int value){return -1;};
+	virtual void sort();
+	virtual bool suppress(int value);
+	virtual int find(int value);
 protected:
 	void write(std::string prefix) const;
 	int key_;
+	BinaryTree* parent_;
 	BinaryTree* child_left_;
 	BinaryTree* child_right_;
 };

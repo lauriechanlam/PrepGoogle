@@ -14,35 +14,50 @@ void BinaryTree::write() const {
 }
 
 void BinaryTree::write(std::string prefix) const {
-	
-
-	if (child_left_ != NULL) {
+	if (child_left_ != NULL)
 		child_left_->write(std::string("  ")+prefix);
-	}
 
 	std::cout << prefix << key_ << std::endl;
 
-	if (child_right_ != NULL) {
+	if (child_right_ != NULL)
 		child_right_->write(std::string("  ")+prefix);
-	}
 }
 
 bool BinaryTree::insert(int value) {
-	if (value <= key_) {
-		if (child_left_ != NULL) {
-			child_left_->insert(value);
-			return true;
-		}
-		child_left_ = new BinaryTree(value);
-		return true;
+	BinaryTree *root = this;
+
+	while (root != NULL) {
+		if (value <= root->key_)
+			root = root->child_left_;
+		else
+			root = root->child_right_;
 	}
-	if (child_right_ != NULL) {
-		child_right_->insert(value);
-		return true;
-	}
-	child_right_ = new BinaryTree(value);
+
+	root = new BinaryTree(value);
 	return true;
 }
-//void BinaryTree::sort() = 0;
-//bool BinaryTree::suppress(int value) = 0;
-//int BinaryTree::find(int value) = 0;
+void BinaryTree::sort() {
+	/* You just need to read the tree in order */
+	std::vector<int> table;
+
+	BinaryTree* parent = NULL;
+	BinaryTree* root = this;
+
+	while (root != NULL) {
+		if (root->child_left_ != NULL) {
+			parent = root;
+			root = root->child_left_;
+		}
+	}
+
+	sort(child_right_,table);
+	
+}
+
+bool BinaryTree::suppress(int value) {
+	return false;
+}
+
+int BinaryTree::find(int value) {
+	return -1;
+}
