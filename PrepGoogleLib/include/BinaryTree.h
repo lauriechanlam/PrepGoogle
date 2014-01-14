@@ -3,19 +3,23 @@
 #define PREPGOOGLE_BINARYTREE_H_
 
 #include <vector>
+#include <memory>
+
+struct BinaryTreeNode {
+  explicit BinaryTreeNode(int value);
+  int key;
+  std::shared_ptr<BinaryTreeNode> left_child;
+  std::shared_ptr<BinaryTreeNode> right_child;
+};
 
 class BinaryTree {
  public:
-  BinaryTree(int key);
-  ~BinaryTree();
   virtual void insert(int key);
   virtual bool suppress(int key);
-  virtual const BinaryTree *find(int key) const;
+  virtual std::shared_ptr<BinaryTreeNode> find(int key) const;
   virtual std::vector<int> sort() const;
  private:
-   int key_;
-   BinaryTree *left_child_;
-   BinaryTree *right_child_;
+  std::shared_ptr<BinaryTreeNode> node_;
 };
 
 #endif  // PREPGOOGLE_BINARYTREE_H_
