@@ -11,6 +11,11 @@ BinaryTreeNode::BinaryTreeNode(int value) {
 }
 
 
+bool BinaryTree::empty() const {
+  return node_ == NULL;
+}
+
+
 void BinaryTree::insert(int key) {
   if (node_ == NULL) {
     node_.reset(new BinaryTreeNode(key));
@@ -56,7 +61,7 @@ bool BinaryTree::suppress(int key) {
   std::shared_ptr<BinaryTreeNode> right = node->right_child;
 
   if (node == node_) {
-    node.reset();  // Actually erasing the wanted node
+    node_.reset();  // Actually erasing the wanted node
     if (left != NULL) {
       node_ = left;
       while (left->right_child != NULL)
@@ -66,7 +71,11 @@ bool BinaryTree::suppress(int key) {
       node_ = right;
     }
   } else {  // node != node_, we do not need to erase the root
-    node.reset();  // Actually erasing the wanted node
+    // Actually erasing the wanted node
+    if (parent->left_child == node)
+      parent->left_child = NULL;
+    else
+      parent->right_child = NULL;
     if (left != NULL) {
       if (is_left_child)
         parent->left_child = left;

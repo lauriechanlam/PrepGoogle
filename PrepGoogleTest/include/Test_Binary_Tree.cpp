@@ -36,14 +36,21 @@ TEST(Binary_Tree, RightSide) {
 
 TEST(Binary_Tree, Random) {
   BinaryTree tree;
+
   for (int i = 0; i < 500; ++i)
     tree.insert(rand() % 1000);  // NOLINT: rand is ok, no multi-threading
   std::vector<int> sorted = tree.sort();
   EXPECT_EQ(500, sorted.size());
-  bool test = true;
-  for (int i = 1; i < 500; ++i) {
+  for (int i = 1; i < 500; ++i)
     EXPECT_LE(sorted[i - 1], sorted[i]);
-    if (!test)
+  size_t n = 500;
+  while (!sorted.empty()) {
+    EXPECT_EQ(n, sorted.size());
+    if (n != sorted.size())
       break;
+    tree.suppress(sorted.back());
+    sorted = tree.sort();
+    --n;
   }
+  EXPECT_TRUE(tree.empty());
 }

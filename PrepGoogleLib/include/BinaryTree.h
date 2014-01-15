@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 
+
 struct BinaryTreeNode {
   explicit BinaryTreeNode(int value);
   int key;
@@ -12,12 +13,14 @@ struct BinaryTreeNode {
   std::shared_ptr<BinaryTreeNode> right_child;
 };
 
+
 class BinaryTree {
  public:
-  virtual void insert(int key);
-  virtual bool suppress(int key);
-  virtual std::shared_ptr<BinaryTreeNode> find(int key) const;
-  virtual std::vector<int> sort() const;
+  bool empty() const;
+  void insert(int key);
+  bool suppress(int key);
+  std::shared_ptr<BinaryTreeNode> find(int key) const;
+  std::vector<int> sort() const;
  private:
   std::shared_ptr<BinaryTreeNode> node_;
 };

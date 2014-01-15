@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="RedBlackTree.cpp" />
     <ClCompile Include="src\BinaryTree.cpp" />
     <ClCompile Include="src\Heap.cpp" />
     <ClCompile Include="src\MergeSort.cpp" />
@@ -21,6 +22,7 @@
     <ClInclude Include="include\QuickSort.h" />
     <ClInclude Include="include\Heap.h" />
     <ClInclude Include="include\MergeSort.h" />
+    <ClInclude Include="include\RedBlackTree.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A3CD1E07-39FC-4E9A-B105-E812BEA62343}</ProjectGuid>
