@@ -42,10 +42,10 @@ void BinaryTree::insert(int key) {
 
 
 bool BinaryTree::suppress(int key) {
-  std::shared_ptr<BinaryTreeNode> parent = node_;
+  std::shared_ptr<BinaryTreeNode> parent = NULL;
   std::shared_ptr<BinaryTreeNode> node = node_;
   bool is_left_child = true;
-  while (node) {
+  while (node != NULL) {
     if (node->key == key)
       break;
     parent = node;
@@ -60,37 +60,45 @@ bool BinaryTree::suppress(int key) {
   std::shared_ptr<BinaryTreeNode> left = node->left_child;
   std::shared_ptr<BinaryTreeNode> right = node->right_child;
 
-  if (node == node_) {
-    node_.reset();  // Actually erasing the wanted node
-    if (left != NULL) {
-      node_ = left;
-      while (left->right_child != NULL)
+  if (left != NULL) {
+    if (left->right_child == NULL) {  // simply by-pass
+      if (parent != NULL)
+        parent->left_child = left;
+      else
+        node_ = left;
+    } else {
+      parent = node;
+      while (left->right_child != NULL) {
+        parent = left;
         left = left->right_child;
-      left->right_child = right;
-    } else if (right != NULL) {
-      node_ = right;
+      }
+      node->key = left->key;
+      parent->right_child = NULL;
     }
-  } else {  // node != node_, we do not need to erase the root
-    // Actually erasing the wanted node
-    if (parent->left_child == node)
+  } else if (right != NULL) {
+    if (right->left_child == NULL) {
+      if (parent != NULL)
+        parent->right_child = right;
+      else
+        node_ = right;
+    } else {
+      parent = node;
+      while (right->left_child != NULL) {
+        parent = right;
+        right = right->left_child;
+      }
+      node->key = right->key;
+      parent->left_child = NULL;
+    }
+  } else {
+    if (parent == NULL)
+      node_ = NULL;
+    else if (parent->left_child == node)
       parent->left_child = NULL;
     else
       parent->right_child = NULL;
-    if (left != NULL) {
-      if (is_left_child)
-        parent->left_child = left;
-      else
-        parent->right_child = left;
-      while (left->right_child != NULL)
-        left = left->right_child;
-      left->right_child = right;
-    } else if (right != NULL) {
-      if (is_left_child)
-        parent->left_child = right;
-      else
-        parent->right_child = right;
-    }
   }
+
   return true;
 }
 
